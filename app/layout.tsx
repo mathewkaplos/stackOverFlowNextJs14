@@ -12,7 +12,7 @@ import "./globals.css";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/context/themeProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
