@@ -6,50 +6,16 @@ import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
+import { getQuestions } from "@/lib/actions/question.action";
 
 import Link from "next/link";
 
 import React from "react";
 
-const questions = [
-  {
-    _id: 1,
-    title: "Redux Toolkit Not Updating State as Expected",
-    tags: [
-      { _id: "1", name: "SQL" },
-      { _id: "2", name: "React" },
-    ],
-    author: {
-      _id: "a1",
-      name: "John Doe",
-      picture: "https://randomuser.me/api/portraits/men/1.jpg",
-    },
-    upvotes: 10,
-    views: 10000,
-    answers: [],
-    createtAt: new Date("2024-02-30T12:00:00.000Z"),
-  },
-  {
-    _id: 2,
-    title:
-      "Handling Form Data and User Registration in MERN Stack: Issues with FormData and Validation",
-    tags: [
-      { _id: "3", name: "MERN" },
-      { _id: "4", name: "React" },
-    ],
-    author: {
-      _id: "a2",
-      name: "Jane Smith",
-      picture: "https://randomuser.me/api/portraits/women/2.jpg",
-    },
-    upvotes: 8,
-    views: 9230,
-    answers: [],
-    createtAt: new Date("2024-07-30T12:00:00.000Z"),
-  },
-];
+const Home = async () => {
+  const result = await getQuestions({});
+  console.log(result.questions);
 
-const Home = () => {
   return (
     <>
       <div
@@ -79,8 +45,8 @@ const Home = () => {
       </div>
       <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
             <QuestionCard
               key={question._id}
               _id={question._id}

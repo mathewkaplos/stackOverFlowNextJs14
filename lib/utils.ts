@@ -4,8 +4,18 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+export const getTimestamp = (createdAtInput: Date | string): string => {
+  // Convert the input to a Date object if it's a string
+  const createdAt =
+    typeof createdAtInput === "string"
+      ? new Date(createdAtInput)
+      : createdAtInput;
 
-export const getTimestamp = (createdAt: Date): string => {
+  // Check if the Date object is valid
+  if (!createdAt || isNaN(createdAt.getTime())) {
+    return "Invalid date";
+  }
+
   const now = new Date();
   const timeDifference = now.getTime() - createdAt.getTime();
 
